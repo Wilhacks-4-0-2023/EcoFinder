@@ -18,6 +18,10 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.events}')"
 
+interested = db.Table('interested',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('event_id', db.Integer, db.ForeignKey('event.id'), primary_key=True)
+)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key = True)

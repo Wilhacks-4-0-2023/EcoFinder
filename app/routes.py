@@ -93,7 +93,10 @@ def interested(event_id):
         if current_user not in event.interested_users:
             event.interested_users.append(current_user)
             db.session.commit()
-        flash('You are now interested in this event.')
+            flash('You are now interested in this event.', 'success')
+        else:
+            flash(f'You have already signed up for this event!', 'danger')
+
     return redirect(url_for('event_detail', event_id=event_id))
 
 def getEventRows():
