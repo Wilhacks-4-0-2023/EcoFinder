@@ -68,14 +68,28 @@ function success(pos){
     // }).addTo(map);
 
 
+    var eventData = []
+    const eventDataRequest = {{ data }}
+    fetch(eventDataRequest)
+    .then(response => response.json())
+    .then(data => {
+        // data is a parsed JSON object
+        eventData = data
+
+        // update
+        eventData.forEach((event) => {
+            window.renderPolygon(event.polygon)
+        })
+    })
+
     // TODO: PLACEHOLDER DATA FOR NOW
-    var eventData = [
-        {
-            polygon : [
-                [1, 1]
-            ]
-        }
-    ]
+    // var eventData = [
+    //     {
+    //         polygon : [
+    //             [1, 1]
+    //         ]
+    //     }
+    // ]
 
 
 
@@ -160,9 +174,9 @@ function success(pos){
 
 
 
-    eventData.forEach((event) => {
-        window.renderPolygon(event.polygon)
-    })
+    // eventData.forEach((event) => {
+    //     window.renderPolygon(event.polygon)
+    // })
 
 
 
