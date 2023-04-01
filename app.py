@@ -36,11 +36,11 @@ def about():
 
 @app.route("/events")
 def events():
-    return render_template('events.html', title = 'Events', data = eventData)
+    return render_template('events.html', title = 'Events', data = '')
 
-@app.route("/mapping")
-def mapping():
-    return render_template('map.html', title = 'Mapping')
+@app.route("/map")
+def map():
+    return render_template('map.html', title = 'Maps', data = '')
 
 @app.route("/login")
 def login():
