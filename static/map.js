@@ -28,6 +28,7 @@ function sendEventonClick() {
     // do some polygon processing
 
     
+
     eventPolygon = []
 
 }
