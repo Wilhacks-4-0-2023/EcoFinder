@@ -33,7 +33,7 @@
     /* transition-duration: 0.4s; */
     position: absolute;
     right: 20px;
-    top: 100px;
+    top: 460px;
     z-index: 4000;
 }
 
@@ -59,7 +59,7 @@
     /* transition-duration: 0.4s; */
     position: absolute;
     right: 180px;
-    top: 100px;
+    top: 460px;
     z-index: 4000;
 }
 
@@ -78,5 +78,6 @@
     right: 10px;
     top: 100px;
     background-color: rgb(70, 173, 227);
-    border-radius: ;
+    border-radius: 10px;
+    padding: 10px 10px;
 }
