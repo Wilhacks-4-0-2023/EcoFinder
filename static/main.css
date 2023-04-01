@@ -2,6 +2,9 @@
     background-color: dodgerblue;
     border-color: rgb(64, 123, 232);
     border-radius: 10%;
-    font-size: 10%;
-
+    font-size: 200%;
+    border-radius: 10px;
+    text-align: center;
+    /* padding: 50% 50%; */
+    padding: 10px 15px;
 }
