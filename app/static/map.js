@@ -11,7 +11,19 @@ function update() {
     document.getElementById("quitEvent").disabled = !creatingEvent
     document.getElementById("eventForm").hidden = !creatingEvent
 
-    // document.getElementById("tempPolygonStorage").
+    var v = '';
+    if (eventPolygon.length == 0) {
+        v = ''
+    } else {
+        v = '['
+        eventPolygon.forEach((coordinate) => {
+            v = v + '[' + coordinate.lat + ', ' + coordinate.lng + '], '
+        })
+        v = v.substring(1, v.length - 1) + ']'
+        console.log(v)
+    }
+
+    document.getElementById("location").value = v
     // window.clearPolygon()
 }
 
@@ -192,6 +204,7 @@ function success(pos){
             eventPolygon.push(e.latlng)
             window.clearPolygon()
             window.renderPolygon(eventPolygon)
+            update()
         }
     });
 
