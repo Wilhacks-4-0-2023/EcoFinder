@@ -169,6 +169,7 @@ function success(pos) {
                         document.getElementById("eventViewTitle").textContent = "Title: " + event.title
                         document.getElementById("eventViewContent").textContent = "Content: " + event.content
                         document.getElementById("eventViewDatePosted").textContent = "Date Posted: " + event.date_posted
+                        document.getElementById("eventViewPostedBy").textContent = "Posted by: " + event.user_id
                         // document.getElementById("eventViewLocation").textContent = event.location
 
                     });
