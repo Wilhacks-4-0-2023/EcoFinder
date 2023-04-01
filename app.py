@@ -23,3 +23,7 @@ class Event(db.Model):
     content = db.Column(db.Text, nullable = False)
     location = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+
+@app.route("/home")
+def home():
+    return render_template('home.html')
