@@ -30,7 +30,8 @@ def events():
 
 @routes.route("/map")
 def map():
-    return render_template('map.html', title = 'Maps')
+    eventData = Event.query.all()
+    return render_template('map.html', title = 'Maps', data = eventData)
 
 # has hashing enabled
 @routes.route("/register", methods=['GET', 'POST'])
