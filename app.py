@@ -79,7 +79,7 @@ def map():
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit:
         user = User(form.username.data, email = form.email.data, password = form.password.data, location = form.location.data)
 
         flash(f'Account created! Thanks for signing up, {form.username.data}!', 'success')
