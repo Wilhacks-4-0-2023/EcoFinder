@@ -36,7 +36,7 @@ def about():
 
 @app.route("/events")
 def events():
-    return render_template('events.html', title = 'Events')
+    return render_template('events.html', title = 'Events', data = eventData)
 
 @app.route("/mapping")
 def mapping():

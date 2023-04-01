@@ -1,3 +1,7 @@
+function getvars(vars) {
+    return vars
+}
+
 function success(pos){
     console.log(pos);
     const lat = pos.coords.latitude;
@@ -16,6 +20,7 @@ function success(pos){
         fillOpacity: 0.3,
         radius: accuracy
     }).addTo(map);
+    
 
 }
    
