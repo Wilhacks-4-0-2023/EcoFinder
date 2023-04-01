@@ -7,6 +7,10 @@ var creatingEvent = false;
 var viewingInfo = false;
 var eventPolygon = [];
 
+function viewingInfoOff() {
+    viewingInfo = false
+}
+
 function update() {
     document.getElementById("sendEvent").disabled = !creatingEvent
     document.getElementById("quitEvent").disabled = !creatingEvent
