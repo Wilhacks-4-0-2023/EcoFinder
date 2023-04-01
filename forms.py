@@ -33,9 +33,12 @@ class LoginForm(FlaskForm):
 
 class EventForm(FlaskForm):
     title = StringField('Title', 
-                        validators=[DataRequired(), Length(min = 2, max=100)])
+                            validators=[DataRequired(), Length(min = 2, max=100)])
     description = StringField('Description',
-                              validators=DataRequired())
-    location = StringField('Address', validators = DataRequired())
+                            validators=[DataRequired()])
+    location = StringField('Address', 
+                            validators = [DataRequired()])
+    
+    submit = SubmitField('Submit This Event')
 
     

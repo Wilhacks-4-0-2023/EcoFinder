@@ -16,6 +16,8 @@ class User(db.Model):
     username = db.Column(db.String, unique = True, nullable = False)
     email = db.Column(db.String, unique = True, nullable = False )
     password = db.Column(db.String, nullable = False)
+    events = db.relationship('Event', backref = 'author', lazy = True)
+
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key = True)
