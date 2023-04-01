@@ -70,3 +70,7 @@
 .quitEvent:disabled {
     display: none
 }
+
+#eventForm:disabled {
+    display: none
+}
