@@ -12,9 +12,9 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(24), unique = True, nullable = False)
+    username = db.Column(db.String, unique = True, nullable = False)
     email = db.Column(db.String, unique = True, nullable = False )
-    password = db.Column(db.String(32), nullable = False)
+    password = db.Column(db.String, nullable = False)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -28,6 +28,7 @@ class Event(db.Model):
 @app.route("/home")
 def home():
     return render_template('home.html', title = 'Home')
+
 
 @app.route("/about")
 def about():
