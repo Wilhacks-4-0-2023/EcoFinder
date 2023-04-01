@@ -3,7 +3,7 @@ from app import app, db, bcrypt
 from datetime import datetime
 from app.forms import RegistrationForm, LoginForm, EventForm
 from flask_login import login_user, current_user, logout_user, login_required
-
+import jsonify
 from app.models import User, Event
 
 @app.route("/")
@@ -19,15 +19,15 @@ def about():
 @app.route("/events", methods = ['GET', 'POST'])
 @login_required
 def events():
-    form = EventForm()
-    print("debug")
+    getEventRows()
+
     if form.validate_on_submit():
-        print("debug2")
         event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, author=current_user)
         db.session.add(event)
         db.session.commit()
         flash(f'Event created, thanks for contributing!')
         flash(f'{Event.query.all()}')
+
         
     return render_template('events.html', title='Events', form=form)
 
@@ -82,3 +82,15 @@ def logout():
 @login_required
 def account():
     return render_template('account.html', title='Account Details')
+
+def getEventRows():
+    rows = Event.query.all()
+    column_keys = Event.__table__.columns.keys()
+    rows_dic_temp = {}
+    rows_dic = []
+    for row in rows:
+        for col in column_keys:
+            rows_dic_temp[col] = getattr(row, col)
+        rows_dic.append(rows_dic_temp)
+        rows_dic_temp= {}
+    return jsonify(rows_dic)
