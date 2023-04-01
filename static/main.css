@@ -1,0 +1,72 @@
+.createEvent {
+    background-color: dodgerblue;
+    border-color: rgb(64, 123, 232);
+    border-radius: 10%;
+    font-size: 200%;
+    border-radius: 10px;
+    text-align: center;
+    /* padding: 50% 50%; */
+    padding: 10px 15px;
+
+    /* transition-duration: 0.4s; */
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 4000;
+}
+
+.createEvent:hover {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+
+.sendEvent {
+    background-color: rgb(77, 206, 41);
+    border-color: rgb(36, 109, 32);
+    border-radius: 10%;
+    font-size: 200%;
+    border-radius: 10px;
+    text-align: center;
+    /* padding: 50% 50%; */
+    padding: 10px 15px;
+
+    /* transition-duration: 0.4s; */
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    z-index: 4000;
+}
+
+.sendEvent:hover {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.sendEvent:disabled {
+    display: none
+}
+
+
+.quitEvent {
+    background-color: rgb(235, 69, 69);
+    border-color: rgb(110, 39, 23);
+    border-radius: 10%;
+    font-size: 200%;
+    border-radius: 10px;
+    text-align: center;
+    /* padding: 50% 50%; */
+    padding: 10px 15px;
+
+    /* transition-duration: 0.4s; */
+    position: absolute;
+    right: 180px;
+    top: 100px;
+    z-index: 4000;
+}
+
+.quitEvent:hover {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.quitEvent:disabled {
+    display: none
+}
