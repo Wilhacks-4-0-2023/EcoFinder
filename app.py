@@ -40,4 +40,12 @@ def events():
 def mapping():
     return render_template('mapping.html', title = 'Mapping')
 
+@app.route("/login")
+def login():
+    return render_template('login.html', title = 'Login')
+
+@app.route("/register")
+def register():
+    return render_template('register.html', title = 'Register')
+
 
