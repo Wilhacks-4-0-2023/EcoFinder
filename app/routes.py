@@ -19,8 +19,8 @@ def about():
 @login_required
 def events():
     getEventRows()
- 
 
+    form = EventForm
     if form.validate_on_submit():
         event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, author=current_user)
         db.session.add(event)
