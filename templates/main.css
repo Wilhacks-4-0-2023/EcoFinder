@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+      font-family: Proxima Nova, system-ui, sans-serif;
+    }
+  }
+
 .button {
     background-color: dodgerblue;
     border-color: rgb(64, 123, 232);
@@ -11,5 +17,11 @@
 .main{
 
 background-color: rgb(14 165 233);;
+
+}
+
+.intro{
+
+animation: typing 3s steps(20), blink .5s 
 
 }
