@@ -18,16 +18,10 @@ def about():
 @app.route("/events", methods = ['GET', 'POST'])
 @login_required
 def events():
-    form = EventForm()
-    if form.validate_on_submit():
-        event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location = form.location.data, author=current_user)
-        db.session.add(event)
-        db.session.commit()
-        flash(f'Event created, thanks for contributing!')
-        flash(f'{Event.query.all()}')
+    values = getEventRows().data
 
         
-    return render_template('events.html', title='Events', form=form)
+    return render_template('events.html', title='Events')
 
 @app.route("/map", methods = ['GET', 'POST'])
 def map():
@@ -81,10 +75,6 @@ def logout():
 @login_required
 def account():
     return render_template('account.html', title='Account Details')
-
-@app.route("/api/get-event")
-def apigetevent():
-    return getEventRows().data
 
 def getEventRows():
     rows = Event.query.all()
