@@ -35,7 +35,7 @@ def events():
 def map():
     form = EventForm()
     if form.validate_on_submit():
-        event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, author=current_user)
+        event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location = 'loc1', author=current_user)
         db.session.add(event)
         db.session.commit()
         flash(f'Event created, thanks for contributing!')
