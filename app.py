@@ -66,7 +66,7 @@ def about():
 def events():
     form = EventForm()
     if form.validate_on_submit:
-        event = Event(title = form.title.data, date_posted = datetime.now, content = form.content.data, location = form.location.data)
+        event = Event(form.title.data, date_posted = datetime.utcnow(), content = form.content.data, location = form.location.data)
         db.session.add(event)
         db.session.commit()
         flash(f'Event created, thanks for contributing!')
@@ -74,7 +74,7 @@ def events():
 
 @app.route("/map")
 def map():
-    return render_template('map.html', title = 'Maps', data = '')
+    return render_template('map.html', title = 'Maps')
 
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
