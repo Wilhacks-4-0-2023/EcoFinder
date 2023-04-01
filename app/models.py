@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 from app import db, login_manager
 from flask_login import UserMixin
 
@@ -17,6 +17,8 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.events}')"
+    
+
 
 interested = db.Table('interested',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
@@ -30,7 +32,12 @@ class Event(db.Model):
     content = db.Column(db.Text, nullable = False)
     location = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-    interested_users = db.relationship('User', secondary = 'interested', backref='interested_events', lazy = 'dynamic')
+    interested = db.relationship('Interested', backref='post', passive_deletes=True)
 
     def __repr__(self):
         return f"Event('{self.title}', '{self.date_posted}', '{self.content}', '{self.location}')"
+    
+class Interested(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    date_created = db.Column(db.DateTime(timezone = True), default = datetime.utcnow())
+    author = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False )
