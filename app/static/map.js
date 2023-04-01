@@ -12,6 +12,8 @@ function update() {
     document.getElementById("quitEvent").disabled = !creatingEvent
     document.getElementById("eventForm").hidden = !creatingEvent
 
+    document.getElementById("eventView").hidden = !viewingInfo
+
     var v = '';
     if (eventPolygon.length == 0) {
         v = ''
@@ -128,7 +130,25 @@ function success(pos){
             eventData.forEach((event) => {
                 if (event.location) {
                     console.log(event.location)
-                    window.renderPolygon(JSON.parse(event.location))
+                    var polygono = window.renderPolygon(JSON.parse(event.location))
+
+                    polygono.on("mouseover", (event) => {
+
+                    });
+                    polygono.on("mouseout", (event) => {
+                        
+                    });
+                    polygono.on("click", (e) => {
+                        console.log(event)
+        
+                        viewingInfo = true
+
+                        document.getElementById("eventViewTitle").textContent = "Title: " + event.title
+                        document.getElementById("eventViewContent").textContent = "Content: " + event.content
+                        document.getElementById("eventViewDatePosted").textContent = "Date Posted: " + event.date_posted
+                        // document.getElementById("eventViewLocation").textContent = event.location
+
+                    });
                 }
             })
         }
@@ -161,19 +181,6 @@ function success(pos){
             polygono.addTo(map);
             lastRender.push(polygono)
             var polygonremovei = lastRender.length - 1
-            
-            polygono.on("mouseover", (event) => {
-
-            });
-            polygono.on("mouseout", (event) => {
-                
-            });
-            polygono.on("click", (event) => {
-                console.log(event)
-
-                viewingInfo = true
-                document.getElementById("eventViewInfo").textContent = 'test'
-            });
 
             // draggable markers
             for (i = 0; i < polygon.length; i++) {
