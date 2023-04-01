@@ -1,5 +1,6 @@
 from flask import render_template, flash, url_for, redirect, request, jsonify
 from app import app, db, bcrypt
+import json
 from datetime import datetime
 from app.forms import RegistrationForm, LoginForm, EventForm
 from flask_login import login_user, current_user, logout_user, login_required
@@ -19,9 +20,11 @@ def about():
 @login_required
 def events():
     values = getEventRows().data
+    values = json.loads(values)
+    print(values[0]["content"])
 
         
-    return render_template('events.html', title='Events')
+    return render_template('events.html', title = 'Events List', values = values)
 
 @app.route("/map", methods = ['GET', 'POST'])
 @login_required
@@ -31,7 +34,7 @@ def map():
         event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location=form.location.data, author=current_user)
         db.session.add(event)
         db.session.commit()
-        flash(f'Event created, thanks for contributing to saving the Earth!')
+        flash(f'Event created, thanks for contributing to saving the Earth!', 'success')
         return redirect(url_for('map'))
     eventData = getEventRows().data
     return render_template('map.html', title='Maps', data=eventData, form=form)
