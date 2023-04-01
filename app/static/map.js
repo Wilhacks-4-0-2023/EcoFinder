@@ -20,6 +20,7 @@ function update() {
             v = v + '[' + coordinate.lat + ', ' + coordinate.lng + '], '
         })
         v = v.substring(1, v.length - 1) + ']'
+        console.log(v)
     }
 
     document.getElementById("location").value = v
