@@ -5,6 +5,7 @@ function getvars(vars) {
 // modifiable variables
 var creatingEvent = false;
 var viewingInfo = false;
+var viewingInfoID = false;
 var eventPolygon = [];
 
 function update() {
@@ -71,7 +72,19 @@ function quitEventonClick() {
 
 
 
-function success(pos){
+function InterestedEvent(id) {
+    // id is event id
+    console.log(id)
+
+    // api request
+}
+
+
+
+
+
+
+function success(pos) {
     console.log(pos);
     const lat = pos.coords.latitude;
     const lng = pos.coords.longitude;
@@ -149,12 +162,14 @@ function success(pos){
                         console.log(event)
         
                         viewingInfo = true
+                        viewingInfoID = event.id
 
                         update()
 
                         document.getElementById("eventViewTitle").textContent = "Title: " + event.title
                         document.getElementById("eventViewContent").textContent = "Content: " + event.content
                         document.getElementById("eventViewDatePosted").textContent = "Date Posted: " + event.date_posted
+                        document.getElementById("eventViewPostedBy").textContent = "Posted by: " + event.user_id
                         // document.getElementById("eventViewLocation").textContent = event.location
 
                     });
