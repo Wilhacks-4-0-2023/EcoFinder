@@ -11,6 +11,7 @@ function update() {
     document.getElementById("quitEvent").disabled = !creatingEvent
     document.getElementById("eventForm").hidden = !creatingEvent
 
+    // document.getElementById("tempPolygonStorage").
     // window.clearPolygon()
 }
 
