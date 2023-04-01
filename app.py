@@ -13,3 +13,13 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(24), unique = True, nullable = False)
+    email = db.Column(db.String, unique = True, nullable = False )
+    password = db.Column(db.String(32), nullable = False)
+
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(100), nullable = False)
+    date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow())
+    content = db.Column(db.Text, nullable = False)
+    location = db.Column(db.String, nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
