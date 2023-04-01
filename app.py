@@ -24,6 +24,10 @@ class Event(db.Model):
     location = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
 
+@app.route("/")
+def home():
+    return render_template('home.html', title = 'Home')
+
 @app.route("/home")
 def home():
     return render_template('home.html', title = 'Home')
@@ -39,5 +43,13 @@ def events():
 @app.route("/mapping")
 def mapping():
     return render_template('mapping.html', title = 'Mapping')
+
+@app.route("/login")
+def login():
+    return render_template('login.html', title = 'Login')
+
+@app.route("/register")
+def register():
+    return render_template('register.html', title = 'Register')
 
 
