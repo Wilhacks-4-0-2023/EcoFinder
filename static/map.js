@@ -9,6 +9,7 @@ var eventPolygon = [];
 function update() {
     document.getElementById("sendEvent").disabled = !creatingEvent
     document.getElementById("quitEvent").disabled = !creatingEvent
+    document.getElementById("eventForm").disabled = !creatingEvent
 
     window.clearPolygon()
 }
@@ -28,6 +29,7 @@ function sendEventonClick() {
     // do some polygon processing
 
     
+
     eventPolygon = []
 
 }
