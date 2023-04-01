@@ -196,6 +196,8 @@ function success(pos){
     //     window.renderPolygon(event.polygon)
     // })
 
+    //
+
 
 
     // event creation
