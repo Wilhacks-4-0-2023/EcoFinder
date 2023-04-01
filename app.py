@@ -64,9 +64,9 @@ def about():
 
 @app.route("/events")
 def events():
-    form = EventForm
-    if form.validate_on_submit():
-        event = Event(form.title.data, date_posted = datetime.now, content = form.content.data, location = form.location.data)
+    form = EventForm()
+    if form.validate_on_submit:
+        event = Event(title = form.title.data, date_posted = datetime.now, content = form.content.data, location = form.location.data)
         db.session.add(event)
         db.session.commit()
         flash(f'Event created, thanks for contributing!')
