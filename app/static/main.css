@@ -32,6 +32,8 @@ body {
     border-radius: 3px;
     margin-bottom: 20px;
   }
+
+
   
   .createEvent {
     background-color: dodgerblue;
@@ -112,6 +114,16 @@ body {
     z-index: 4000;
     right: 10px;
     top: 100px;
+    background-color: rgb(70, 173, 227);
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#eventView {
+    position: absolute;
+    z-index: 4000;
+    left: 20px;
+    bottom: 20px;
     background-color: rgb(70, 173, 227);
     border-radius: 10px;
     padding: 5px 10px;
