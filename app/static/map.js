@@ -161,6 +161,16 @@ function success(pos){
             lastRender.push(polygono)
             var polygonremovei = lastRender.length - 1
             
+            polygono.on("mouseover", (event) => {
+
+            });
+            polygono.on("mouseout", (event) => {
+                
+            });
+            polygono.on("click", (event) => {
+                console.log(event)
+            });
+
             // draggable markers
             for (i = 0; i < polygon.length; i++) {
                 var coordinate = polygon[i]
