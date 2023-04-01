@@ -11,7 +11,7 @@ function update() {
     document.getElementById("quitEvent").disabled = !creatingEvent
     document.getElementById("eventForm").hidden = !creatingEvent
 
-    window.clearPolygon()
+    // window.clearPolygon()
 }
 
 function creatingEventonClick() {
