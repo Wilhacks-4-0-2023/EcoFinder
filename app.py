@@ -1,8 +1,13 @@
 from flask import Flask, render_template, flash, url_for, redirect
+from app import app, db
 import bcrypt
 from datetime import datetime
 from forms import RegistrationForm, LoginForm, EventForm
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import login_user, current_user, logout_user, login_required, LoginManager
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 
 from flask_sqlalchemy import SQLAlchemy
