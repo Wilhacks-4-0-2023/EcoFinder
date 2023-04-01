@@ -26,7 +26,9 @@ def events():
 @app.route("/map", methods = ['GET', 'POST'])
 def map():
     form = EventForm()
+    print("debug 1 t")
     if form.validate_on_submit():
+        print("debug 2 t")
         event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location = form.location.data, author=current_user)
         db.session.add(event)
         db.session.commit()
