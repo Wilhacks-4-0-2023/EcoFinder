@@ -69,7 +69,7 @@ function success(pos){
 
 
     var eventData = []
-    const eventDataRequest = {{ data }}
+    const eventDataRequest = data
     fetch(eventDataRequest)
     .then(response => response.json())
     .then(data => {
