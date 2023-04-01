@@ -1,7 +1,9 @@
 {%extends "layout.html"%}
-
 {%block content%}
-<p>{{current_user.events}}</p>
+        {%for values in values%}
+            <h3>{{values.title}}</h3>
+            <p>{{values.date_posted}}</p>
+            <p>{{values.content}}</p>
+            <p>By {{values.author}}</p>
+        {%endfor%}
 {%endblock content%}
-
-<!--erm-->
