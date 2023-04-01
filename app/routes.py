@@ -18,18 +18,18 @@ def about():
 @app.route("/events", methods = ['GET', 'POST'])
 @login_required
 def events():
-    getEventRows()
+    rows = getEventRows()
 
-    form = EventForm
-    if form.validate_on_submit():
-        event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, author=current_user)
-        db.session.add(event)
-        db.session.commit()
-        flash(f'Event created, thanks for contributing!')
-        flash(f'{Event.query.all()}')
+    # form = EventForm
+    # if form.validate_on_submit():
+    #     event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, author=current_user)
+    #     db.session.add(event)
+    #     db.session.commit()
+    #     flash(f'Event created, thanks for contributing!')
+    #     flash(f'{Event.query.all()}')
 
         
-    return render_template('events.html', title='Events', form=form)
+    return render_template('events.html', title='Events', rows = rows)
 
 @app.route("/map", methods = ['GET', 'POST'])
 def map():
