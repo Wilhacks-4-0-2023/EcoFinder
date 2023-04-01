@@ -11,12 +11,24 @@
             width: 100%;
             max-height: 100%;
             max-width: 100%;
+            position: absolute;
         }
     </style>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
+
     <script src="{{url_for('static', filename='map.js')}}"></script>
+
+    
+
     <div class="leaflet-container" id="map"></div>
+    <button type="button" class="createEvent" style="position: absolute; right: 20px; top: 20px; z-index: 4000;" >
+        ur mom
+    </button>
+
+
     <script type="text/javascript">
         data = getvars({{data|tojson}})
      </script>

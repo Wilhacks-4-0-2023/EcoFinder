@@ -44,8 +44,15 @@ function success(pos){
         }
     })
 
+
+
+    // event creation
+    var creatingEvent = false;
+
     map.on('click', function(e) {
-        var marker = new L.marker(e.latlng).addTo(map);
+        if (creatingEvent) {
+            var marker = new L.marker(e.latlng).addTo(map);
+        }
     });
 
 }
