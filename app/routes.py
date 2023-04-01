@@ -78,7 +78,7 @@ def logout():
     flash('Successfully logged out', 'success')
     return redirect(url_for('home'))
 
-
+# routing for sites
 
 @app.route("/account")
 @login_required

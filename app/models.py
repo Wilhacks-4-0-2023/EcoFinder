@@ -32,12 +32,7 @@ class Event(db.Model):
     content = db.Column(db.Text, nullable = False)
     location = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
-    interested = db.relationship('Interested', backref='post', passive_deletes=True)
 
     def __repr__(self):
         return f"Event('{self.title}', '{self.date_posted}', '{self.content}', '{self.location}')"
     
-class Interested(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    date_created = db.Column(db.DateTime(timezone = True), default = datetime.utcnow())
-    author = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False )
