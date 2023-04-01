@@ -29,7 +29,7 @@
 </head>
 <body>
 
-    <script src="{{url_for('static', filename='map.js')}}"></script>
+    
 
     
 
@@ -100,9 +100,16 @@
     </button> -->
 
 
-
+    <script type="text/javascript" src="{{url_for('static', filename='map.js')}}"></script>
     <script type="text/javascript">
-        data = getvars({{data}})
-     </script>
+        function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        }
+        eventData = JSON.parse(decodeHtml(`{{ data.decode('utf-8') }}`))
+        startup()
+    </script>
+    
 </body>
 {%endblock content%}

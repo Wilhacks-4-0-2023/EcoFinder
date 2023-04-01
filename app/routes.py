@@ -82,6 +82,10 @@ def logout():
 def account():
     return render_template('account.html', title='Account Details')
 
+@app.route("/api/get-event")
+def apigetevent():
+    return getEventRows().data
+
 def getEventRows():
     rows = Event.query.all()
     column_keys = Event.__table__.columns.keys()

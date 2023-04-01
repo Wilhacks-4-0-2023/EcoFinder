@@ -68,20 +68,21 @@ function success(pos){
     // }).addTo(map);
 
 
-    var eventData = []
-    const eventDataRequest = data
-    fetch(eventDataRequest)
-    .then(response => response.json())
-    .then(data => {
-        // data is a parsed JSON object
-        eventData = data
-        console.log(eventData)
+    // var eventData = []
+    // const eventDataRequest = {{ url_for("api/get-event") }}
+    // fetch(eventDataRequest)
+    // .then(response => response.json())
+    // .then(data => {
+    //     // data is a parsed JSON object
+    //     eventData = data
+    //     console.log(data)
+    //     console.log(eventData)
 
-        // update
-        eventData.forEach((event) => {
-            window.renderPolygon(event.polygon)
-        })
-    })
+    //     // update
+    //     eventData.forEach((event) => {
+    //         window.renderPolygon(event.polygon)
+    //     })
+    // })
 
     // TODO: PLACEHOLDER DATA FOR NOW
     // var eventData = [
@@ -198,7 +199,9 @@ function fail(error){
 }
 
 
-window.addEventListener('load', function() {
-    navigator.geolocation.getCurrentPosition(success, fail);            
-});
+function startup() {
+    window.addEventListener('load', function() {
+        navigator.geolocation.getCurrentPosition(success, fail);            
+    });
+}
 
