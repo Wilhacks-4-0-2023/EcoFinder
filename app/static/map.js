@@ -19,7 +19,7 @@ function update() {
         eventPolygon.forEach((coordinate) => {
             v = v + '[' + coordinate.lat + ', ' + coordinate.lng + '], '
         })
-        v = v.substring(1, v.length - 2) + ']'
+        v = v.substring(0, v.length - 2) + ']'
         console.log(v)
     }
 
