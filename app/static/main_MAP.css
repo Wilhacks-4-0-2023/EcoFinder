@@ -135,3 +135,29 @@ text-shadow: 6px -2px 9px #ECCDCD; */
 }
 
 
+#eventViewClose {
+    position: absolute;
+    float: right;
+    display: inline-block;
+    padding: 2px 5px;
+    background: #ea0606;
+    border-color: #000000;
+    width: 20px;
+    height: 20px;
+    bottom: 340px;
+    left: 270px;
+    border-radius: 5px;
+    padding: 12px 12px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#eventViewClose:hover {
+    /* float: right;
+    display: inline-block; */
+    background: #a80404;
+    border-color: #000000;
+}
