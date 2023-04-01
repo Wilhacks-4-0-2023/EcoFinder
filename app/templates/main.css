@@ -4,14 +4,16 @@
 
 @layer base {
     html {
-      font-family: Proxima Nova, system-ui, sans-serif;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, system-ui, sans-serif;
     }
   }
 
 .button {
+    position: relative;
     background-color: dodgerblue;
-    border-color: rgb(64, 123, 232);
+    border-color: rgb(109, 150, 225);
     border-radius: 10%;
+
 }
 
 .main{
