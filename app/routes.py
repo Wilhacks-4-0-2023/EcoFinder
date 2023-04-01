@@ -17,8 +17,10 @@ def about():
     return render_template('about.html', title = 'About Page')
 
 @app.route("/events", methods = ['GET', 'POST'])
+@login_required
 def events():
     form = EventForm()
+    print("debug")
     if form.validate_on_submit():
         event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location=form.location.data, author=current_user)
         db.session.add(event)
