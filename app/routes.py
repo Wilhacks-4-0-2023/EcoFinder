@@ -1,9 +1,8 @@
-from flask import render_template, flash, url_for, redirect, request
+from flask import render_template, flash, url_for, redirect, request, jsonify
 from app import app, db, bcrypt
 from datetime import datetime
 from app.forms import RegistrationForm, LoginForm, EventForm
 from flask_login import login_user, current_user, logout_user, login_required
-import jsonify
 from app.models import User, Event
 
 @app.route("/")
@@ -20,6 +19,7 @@ def about():
 @login_required
 def events():
     getEventRows()
+ 
 
     if form.validate_on_submit():
         event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, author=current_user)
