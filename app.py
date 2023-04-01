@@ -28,6 +28,7 @@ class Event(db.Model):
 @app.route("/home")
 def home():
     return render_template('home.html', title = 'Home')
+    
 
 @app.route("/about")
 def about():
