@@ -42,7 +42,7 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
+                <legend class="border-bottom mb-4">Create an Event!</legend>
                 <div class="form-group">
                     {{ form.title.label(class="form-control-label") }}
 
@@ -83,6 +83,13 @@
                         {{ form.tags(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
+
+                <h1>&nbsp;</h1>
+
+                {{ form.submit(class="sendEvent", id="sendEvent", onClick="sendEventonClick()", disabled="true") }}
+                <button type="button" class="quitEvent" id="quitEvent" onClick="quitEventonClick()" disabled>
+                    Quit
+                </button>
                
             </fieldset>
         </form>
@@ -91,10 +98,7 @@
         Confirm
         {{ form.submit(class="btn btn-outline-info") }}
     </button> -->
-    {{ form.submit(class="sendEvent", id="sendEvent", onClick="sendEventonClick()", disabled="true") }}
-    <button type="button" class="quitEvent" id="quitEvent" onClick="quitEventonClick()" disabled>
-        Quit
-    </button>
+
 
 
     <script type="text/javascript">

@@ -33,7 +33,7 @@
     /* transition-duration: 0.4s; */
     position: absolute;
     right: 20px;
-    top: 460px;
+    top: 360px;
     z-index: 4000;
 }
 
@@ -59,7 +59,7 @@
     /* transition-duration: 0.4s; */
     position: absolute;
     right: 180px;
-    top: 460px;
+    top: 360px;
     z-index: 4000;
 }
 
