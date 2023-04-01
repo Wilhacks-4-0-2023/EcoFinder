@@ -4,6 +4,7 @@ function getvars(vars) {
 
 // modifiable variables
 var creatingEvent = false;
+var viewingInfo = false;
 var eventPolygon = [];
 
 function update() {
@@ -169,6 +170,9 @@ function success(pos){
             });
             polygono.on("click", (event) => {
                 console.log(event)
+
+                viewingInfo = true
+                document.getElementById("eventViewInfo").textContent = 'test'
             });
 
             // draggable markers

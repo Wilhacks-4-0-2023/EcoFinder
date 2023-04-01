@@ -32,6 +32,8 @@ body {
     border-radius: 3px;
     margin-bottom: 20px;
   }
+
+
   
   .createEvent {
     background-color: dodgerblue;
@@ -68,7 +70,7 @@ body {
     /* transition-duration: 0.4s; */
     position: absolute;
     right: 20px;
-    top: 400px;
+    top: 390px;
     z-index: 4000;
 }
 
@@ -94,7 +96,7 @@ body {
     /* transition-duration: 0.4s; */
     position: absolute;
     right: 180px;
-    top: 400px;
+    top: 390px;
     z-index: 4000;
 }
 
@@ -114,5 +116,21 @@ body {
     top: 100px;
     background-color: rgb(70, 173, 227);
     border-radius: 10px;
-    padding: 10px 10px;
+    padding: 5px 10px;
 }
+
+#eventView {
+    position: absolute;
+    z-index: 4000;
+    left: 20px;
+    bottom: 20px;
+    background-color: rgb(70, 173, 227);
+    border-radius: 10px;
+    padding: 5px 10px;
+
+letter-spacing: 4px;
+line-height: 1.5;
+text-shadow: 6px -2px 9px #ECCDCD;
+}
+
+
