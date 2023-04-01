@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, url_for, redirect
 from datetime import datetime
-from form import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm, EventForm
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -64,7 +64,13 @@ def about():
 
 @app.route("/events")
 def events():
-    return render_template('events.html', title = 'Events', form = form')
+    form = EventForm
+    if form.validate_on_submit():
+        event = Event(form.title.data, date_posted = datetime.now, content = form.content.data, location = form.location.data)
+        db.session.add(event)
+        db.session.commit()
+        flash(f'Event created, thanks for contributing!')
+    return render_template('events.html', title = 'Events', form = form)
 
 @app.route("/map")
 def map():
@@ -74,7 +80,8 @@ def map():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(form.username.data, email = form.email.data, password = form.password.data)
+        user = User(form.username.data, email = form.email.data, password = form.password.data, location = form.location.data)
+
         flash(f'Account created! Thanks for signing up, {form.username.data}!', 'success')
         db.session.add(user)
         db.session.commit()

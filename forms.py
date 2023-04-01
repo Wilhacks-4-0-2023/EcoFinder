@@ -34,7 +34,7 @@ class LoginForm(FlaskForm):
 class EventForm(FlaskForm):
     title = StringField('Title', 
                             validators=[DataRequired(), Length(min = 2, max=100)])
-    description = StringField('Description',
+    content = StringField('Content',
                             validators=[DataRequired()])
     location = StringField('Address', 
                             validators = [DataRequired()])
