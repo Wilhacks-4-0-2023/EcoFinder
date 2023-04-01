@@ -24,8 +24,14 @@
     
 
     <div class="leaflet-container" id="map"></div>
-    <button type="button" class="createEvent" style="position: absolute; right: 20px; top: 20px; z-index: 4000;" >
+    <button type="button" class="createEvent" id="createEvent" onClick="creatingEventonClick()">
         Create Event
+    </button>
+    <button type="button" class="sendEvent" id="sendEvent" onClick="sendEventonClick()" disabled>
+        Confirm
+    </button>
+    <button type="button" class="quitEvent" id="quitEvent" onClick="quitEventonClick()" disabled>
+        Quit
     </button>
 
 
