@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, url_for, redirect
 from datetime import datetime
-from forms import RegistrationForm, LoginForm
+from form import RegistrationForm, LoginForm
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -64,7 +64,7 @@ def about():
 
 @app.route("/events")
 def events():
-    return render_template('events.html', title = 'Events', data = '')
+    return render_template('events.html', title = 'Events', form = form')
 
 @app.route("/map")
 def map():
