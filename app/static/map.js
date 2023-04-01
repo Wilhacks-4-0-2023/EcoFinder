@@ -75,6 +75,7 @@ function success(pos){
     .then(data => {
         // data is a parsed JSON object
         eventData = data
+        console.log(eventData)
 
         // update
         eventData.forEach((event) => {
