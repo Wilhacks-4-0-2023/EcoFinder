@@ -22,8 +22,31 @@ function success(pos){
     }).addTo(map);
 
 
-    for 
-    
+    var eventData = [
+        {
+            polygon : [
+                [1, 1]
+            ]
+        }
+    ]
+
+    eventData.forEach((event) => {
+        if (event.polygon.length == 1) {
+            var coordinate = event.polygon[0]
+            var marker = L.marker(coordinate).addTo(map);
+        } else {
+            var polygon = L.polygon(
+                event.polygon
+            ).addTo(map);
+            // event.polygon.forEach((coordinate) => {
+            //     coordinate.latitude
+            // })
+        }
+    })
+
+    map.on('click', function(e) {
+        var marker = new L.marker(e.latlng).addTo(map);
+    });
 
 }
    
@@ -33,3 +56,4 @@ function fail(error){
 window.addEventListener('load', function() {
     navigator.geolocation.getCurrentPosition(success, fail);            
 });
+
