@@ -1,5 +1,22 @@
-{%extends "layout.html"%}
-{%block content%}
-    <h1>About EcoFinder</h1>
-    <p>EcoFinder is a website created for organizing and joining environmental events.</p>
-{%endblock content%}
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="container mt-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h1 class="card-title" style="color: #006400">About EcoFinder</h1>
+          <p class="card-text" style="color: #228B22">Our app provides an excellent, interactive mapping tool</p>
+          <p class="card-text" style="color: #3CB371">We used Flask, SQLAlchemy, and Leaflet among other libraries.</p>
+          
+        </div>
+      </div>
+  </div>
+  <div class="container mt-3">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h2 class="card-title" style="color: #006400">Purpose</h2>
+        <p class="card-text" style="color: #2E8B57">Our purpose is to empower volunteers and those in need of volunteers with excellent software.</p>
+      </div>
+    </div>
+</div>
+{% endblock content %}
