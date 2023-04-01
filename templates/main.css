@@ -1,5 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .button {
     background-color: dodgerblue;
     border-color: rgb(64, 123, 232);
     border-radius: 10%;
+}
+
+.main{
+
+background-color: rgb(14 165 233);;
+
 }
