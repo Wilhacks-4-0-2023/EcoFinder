@@ -24,20 +24,24 @@ def events():
     return render_template('events.html', title='Events')
 
 @app.route("/map", methods = ['GET', 'POST'])
+@login_required
 def map():
     form = EventForm()
     if form.validate_on_submit():
-        event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location = form.location.data, author=current_user)
+        event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location=form.location.data, author=current_user)
         db.session.add(event)
         db.session.commit()
         flash(f'Event created, thanks for contributing to saving the Earth!')
+        return redirect(url_for('map'))
     eventData = getEventRows().data
-    return render_template('map.html', title='Maps', data=eventData, form=form) 
+    return render_template('map.html', title='Maps', data=eventData, form=form)
+
 
 # has hashing enabled
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
+        flash('You are already logged in.', 'danger')
         return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -53,8 +57,8 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
         flash('You are already logged in.', 'danger')
+        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()

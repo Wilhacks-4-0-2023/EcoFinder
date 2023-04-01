@@ -189,7 +189,7 @@ function success(pos){
         }
     }
 
-
+    window.clearPolygon()
 
 
     // eventData.forEach((event) => {
