@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, url_for, redirect
 from app import db, routes, bcrypt
 from datetime import datetime
-from forms import RegistrationForm, LoginForm, EventForm
+from app.forms import RegistrationForm, LoginForm, EventForm
 from flask_login import login_user, current_user, logout_user, login_required, LoginManager
 
 
