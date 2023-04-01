@@ -24,6 +24,24 @@ class Event(db.Model):
     location = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
 
+'''
+Event = [
+    event {
+        id
+        title
+        date_posted
+        content
+        user_id
+        polygon {
+            [latitude, longitude],
+            ...
+            ...
+        }
+    },
+    ...
+]
+'''
+
 @app.route("/")
 @app.route("/home")
 def home():
