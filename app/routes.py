@@ -85,6 +85,17 @@ def logout():
 def account():
     return render_template('account.html', title='Account Details')
 
+@app.route('/event/<int:event_id>/interested', methods=['POST'])
+@login_required
+def interested(event_id):
+    event = Event.query.get(event_id)
+    if event:
+        if current_user not in event.interested_users:
+            event.interested_users.append(current_user)
+            db.session.commit()
+        flash('You are now interested in this event.')
+    return redirect(url_for('event_detail', event_id=event_id))
+
 def getEventRows():
     rows = Event.query.all()
     column_keys = Event.__table__.columns.keys()
@@ -96,3 +107,4 @@ def getEventRows():
         rows_dic.append(rows_dic_temp)
         rows_dic_temp= {}
     return jsonify(rows_dic)
+
