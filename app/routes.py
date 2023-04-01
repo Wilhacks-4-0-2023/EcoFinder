@@ -26,16 +26,12 @@ def events():
 @app.route("/map", methods = ['GET', 'POST'])
 def map():
     form = EventForm()
-    print("debug 1")
     if form.validate_on_submit():
-        print("debug 2")
         event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location = form.location.data, author=current_user)
         db.session.add(event)
         db.session.commit()
         flash(f'Event created, thanks for contributing to saving the Earth!')
-        flash(f'{Event.query.all()}')
     eventData = getEventRows().data
-    # print(eventData)
     return render_template('map.html', title='Maps', data=eventData, form=form) 
 
 # has hashing enabled
