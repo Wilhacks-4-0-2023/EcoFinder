@@ -29,12 +29,19 @@ Event = [
     event {
         id
         title
+        description
         date_posted
         content
-        user_id
+        creator_id
+        participant [
+            {
+                join_date
+                user_id
+            }
+        ]
         polygon {
             [latitude, longitude],
-            ...
+            ...,
             ...
         }
     },
