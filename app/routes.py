@@ -28,7 +28,7 @@ def events():
         
     return render_template('events.html', title='Events', form=form)
 
-@app.route("/map")
+@app.route("/map", methods = ['GET', 'POST'])
 def map():
     form = EventForm()
     if form.validate_on_submit():
@@ -37,7 +37,8 @@ def map():
         db.session.commit()
         flash(f'Event created, thanks for contributing!')
         flash(f'{Event.query.all()}')
-    return render_template('map.html', title='Maps', form=form)
+    eventData = Event.query.all()
+    return render_template('map.html', title='Maps', data=eventData, form=form)
 
 # has hashing enabled
 @app.route("/register", methods=['GET', 'POST'])
