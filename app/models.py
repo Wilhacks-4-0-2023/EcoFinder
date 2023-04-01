@@ -26,6 +26,7 @@ class Event(db.Model):
     content = db.Column(db.Text, nullable = False)
     location = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    interested_users = db.relationship('User', secondary = 'interested', backref='interested_events', lazy = 'dynamic')
 
     def __repr__(self):
         return f"Event('{self.title}', '{self.date_posted}', '{self.content}', '{self.location}')"
