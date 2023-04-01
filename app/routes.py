@@ -1,40 +1,39 @@
-from flask import Flask, render_template, flash, url_for, redirect
-from app import db, routes, bcrypt
+from flask import render_template, flash, url_for, redirect
+from app import app, db, bcrypt
 from datetime import datetime
 from app.forms import RegistrationForm, LoginForm, EventForm
-from flask_login import login_user, current_user, logout_user, login_required, LoginManager
+from flask_login import login_user, current_user, logout_user, login_required
 
+from app.models import User, Event
 
-
-@routes.route("/")
-@routes.route("/home")
+@app.route("/")
+@app.route("/home")
 def home():
     return render_template('home.html', title = 'Home')
 
 
-@routes.route("/about")
+@app.route("/about")
 def about():
     return render_template('about.html', title = 'About Page')
 
-@routes.route("/events", methods = ['GET', 'POST'])
+@app.route("/events", methods = ['GET', 'POST'])
 def events():
     form = EventForm()
     if form.validate_on_submit():
-        event = Event(form.title.data, date_posted = datetime.utcnow(), content = form.content.data, location = form.location.data, author = current_user)
+        event = Event(title=form.title.data, date_posted=datetime.utcnow(), content=form.content.data, location=form.location.data, author=current_user)
         db.session.add(event)
         db.session.commit()
         flash(f'Event created, thanks for contributing!')
         flash(f'{Event.query.all()}')
         
-    return render_template('events.html', title = 'Events', form = form)
+    return render_template('events.html', title='Events', form=form)
 
-@routes.route("/map")
+@app.route("/map")
 def map():
-    eventData = Event.query.all()
-    return render_template('map.html', title = 'Maps', data = eventData)
+    return render_template('map.html', title='Maps')
 
 # has hashing enabled
-@routes.route("/register", methods=['GET', 'POST'])
+@app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -49,7 +48,7 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 # has hashing enabled
-@routes.route("/login", methods=['GET', 'POST'])
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -60,22 +59,3 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
-
-@routes.route("/logout")
-def logout():
-    logout_user()
-    return redirect(url_for('home'))
-
-@routes.route("/account")
-@login_required
-def account():
-    return render_template('account.html', title='Account')
-
-if '__name__' == '__main__':
-    routes.run(debug=True)
-    print("Running application. ")
-
-
