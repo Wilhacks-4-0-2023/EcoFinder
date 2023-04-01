@@ -1,5 +1,6 @@
 from flask import Flask, render_template, flash, url_for, redirect
 from datetime import datetime
+from forms import RegistrationForm, LoginForm
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -42,13 +43,29 @@ def events():
 def map():
     return render_template('map.html', title = 'Maps', data = '')
 
-@app.route("/login")
-def login():
-    return render_template('login.html', title = 'Login')
-
-@app.route("/register")
+@app.route("/register", methods = ['GET', 'POST'])
 def register():
-    return render_template('register.html', title = 'Register')
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(form.username.data, email = form.email.data, password = form.password.data)
+        flash(f'Account created! Thanks for signing up, {form.username.data}!', 'success')
+        db.session.add(user)
+        db.session.commit()
+        
+        return redirect(url_for('home'))
+    return render_template('register.html', title = 'Registration', form = form)
+
+
+@app.route("/login", methods = ['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit:
+        if form.username.data == "admin@blog.com" or "admin" and form.password.data == "password":
+            flash(f'You have successfully logged in as admin!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash(f'Sorry, try again.', 'danger')
+    return render_template('login.html', title = 'Log In', form = form)
 
 if '__name__' == '__main__':
     app.run(debug=True)
