@@ -27,3 +27,17 @@ class Event(db.Model):
 @app.route("/home")
 def home():
     return render_template('home.html')
+
+@app.route("/about")
+def about():
+    return render_template('about.html')
+
+@app.route("/events")
+def events():
+    return render_template('events.html')
+
+@app.route("/mapping")
+def mapping():
+    return render_template('mapping.html')
+
+
