@@ -25,9 +25,6 @@ class Event(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
 
 @app.route("/")
-def home():
-    return render_template('home.html', title = 'Home')
-
 @app.route("/home")
 def home():
     return render_template('home.html', title = 'Home')
@@ -51,5 +48,9 @@ def login():
 @app.route("/register")
 def register():
     return render_template('register.html', title = 'Register')
+
+if '__name__' == '__main__':
+    app.run(debug=True)
+    print("Running application. ")
 
 
