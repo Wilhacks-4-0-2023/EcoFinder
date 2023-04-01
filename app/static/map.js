@@ -143,6 +143,8 @@ function success(pos){
         
                         viewingInfo = true
 
+                        update()
+
                         document.getElementById("eventViewTitle").textContent = "Title: " + event.title
                         document.getElementById("eventViewContent").textContent = "Content: " + event.content
                         document.getElementById("eventViewDatePosted").textContent = "Date Posted: " + event.date_posted
