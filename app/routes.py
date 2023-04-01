@@ -38,7 +38,8 @@ def map():
         db.session.commit()
         flash(f'Event created, thanks for contributing!')
         flash(f'{Event.query.all()}')
-    eventData = Event.query.all()
+    eventData = getEventRows()
+    print(eventData)
     return render_template('map.html', title='Maps', data=eventData, form=form) 
 
 # has hashing enabled
