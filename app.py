@@ -39,7 +39,7 @@ def events():
 
 @app.route("/mapping")
 def mapping():
-    return render_template('mapping.html', title = 'Mapping')
+    return render_template('map.html', title = 'Mapping')
 
 @app.route("/login")
 def login():
