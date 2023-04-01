@@ -112,7 +112,9 @@ function success(pos){
             lastRender = []
 
             eventData.forEach((event) => {
-                window.renderPolygon(event.polygon)
+                if (event.polygon) {
+                    window.renderPolygon(event.polygon)
+                }
             })
         }
     }
