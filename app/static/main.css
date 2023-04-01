@@ -2,7 +2,7 @@
 body {
     background: #fafafa;
     color: #333333;
-    /* margin-top: 5rem; */
+    /* git  */
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -68,7 +68,7 @@ body {
     /* transition-duration: 0.4s; */
     position: absolute;
     right: 20px;
-    top: 400px;
+    top: 390px;
     z-index: 4000;
 }
 
@@ -94,7 +94,7 @@ body {
     /* transition-duration: 0.4s; */
     position: absolute;
     right: 180px;
-    top: 400px;
+    top: 390px;
     z-index: 4000;
 }
 
@@ -114,5 +114,5 @@ body {
     top: 100px;
     background-color: rgb(70, 173, 227);
     border-radius: 10px;
-    padding: 10px 10px;
+    padding: 5px 10px;
 }
