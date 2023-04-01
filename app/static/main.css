@@ -71,6 +71,12 @@
     display: none
 }
 
-#eventForm:disabled {
-    display: none
+
+#eventForm {
+    position: absolute;
+    z-index: 4000;
+    right: 10px;
+    top: 100px;
+    background-color: rgb(70, 173, 227);
+    border-radius: ;
 }
