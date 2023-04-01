@@ -36,11 +36,14 @@ class EventForm(FlaskForm):
                             validators=[DataRequired(), Length(min = 2, max=100)])
     content = StringField('Content',
                             validators=[DataRequired()])
-    location = StringField('Address', 
-                            validators = [DataRequired()])
+    # location = StringField('Address', 
+    #                         validators = [DataRequired()])
     tags = StringField('Tags (seperated by a comma)',
                        validators=[Length(max = 60)])
     
-    submit = SubmitField('Submit This Event')
+    location = StringField('Location of Event',
+                           validators=[DataRequired()])
+    
+    submit = SubmitField('Submit')
 
     

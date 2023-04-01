@@ -1,8 +1,9 @@
-from flask import Flask, render_template, flash, url_for, redirect, request
+from flask import Flask, render_template, flash, url_for, redirect
 from app import app, db, bcrypt
 from datetime import datetime
 from forms import RegistrationForm, LoginForm, EventForm
 from flask_login import login_user, current_user, logout_user, login_required
+
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -28,6 +29,7 @@ class Event(db.Model):
     location = db.Column(db.String, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
 
+@app.route("/")
 @app.route("/home")
 def home():
     return render_template('home.html', title = 'Home')

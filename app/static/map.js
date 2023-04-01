@@ -9,6 +9,9 @@ var eventPolygon = [];
 function update() {
     document.getElementById("sendEvent").disabled = !creatingEvent
     document.getElementById("quitEvent").disabled = !creatingEvent
+    document.getElementById("eventForm").hidden = !creatingEvent
+
+    window.clearPolygon()
 }
 
 function creatingEventonClick() {
@@ -22,6 +25,13 @@ function sendEventonClick() {
     
     creatingEvent = false
     update()
+
+    // do some polygon processing
+
+    
+
+    eventPolygon = []
+
 }
 
 function quitEventonClick() {
@@ -49,7 +59,7 @@ function success(pos){
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
-    // var marker = L.marker([lat, lng]).addTo(map);
+    var marker = L.marker([lat, lng]).addTo(map);
     // var circle = L.circle([lat, lng], {
     //     color: 'red',
     //     fillColor: '#f03',
@@ -73,12 +83,25 @@ function success(pos){
 
     
     var lastRender = []
-    function renderPolygon(polygon) {
-        // remove last render
-        lastRender.forEach((obj) => {
-            map.removeLayer(obj)
-        })
-        lastRender = []
+    window.clearPolygon = function(polygon) {
+        if (polygon) {
+            var polygonremovei = lastRender.indexOf(polygon)
+            map.removeLayer(lastRender[polygonremovei])
+            lastRender = lastRender.splice(polygonremovei, 1)
+        } else {
+            // remove last render
+            lastRender.forEach((obj) => {
+                map.removeLayer(obj)
+            })
+            lastRender = []
+
+            eventData.forEach((event) => {
+                window.renderPolygon(event.polygon)
+            })
+        }
+    }
+
+    window.renderPolygon = function(polygon) {
 
         // render
         if (polygon.length == 0) {
@@ -86,35 +109,51 @@ function success(pos){
         } else if (polygon.length == 1) {
             var coordinate = polygon[0]
             var marker = L.marker(coordinate, {draggable: true});
+            marker.on('drag', (event) => {
+                var position = event.latlng
+                console.log(position)
+                marker.setLatLng(position, {
+                    draggable: true
+                })
+                polygon[0] = position
+            })
             marker.addTo(map)
             lastRender.push(marker)
+
+            return marker
         } else {
             var polygono = L.polygon(
                 polygon
             )
             polygono.addTo(map);
             lastRender.push(polygono)
+            var polygonremovei = lastRender.length - 1
             
             // draggable markers
-            for (i = 1; i < polygon.length; i++) {
+            for (i = 0; i < polygon.length; i++) {
                 var coordinate = polygon[i]
-                var marker = L.marker(coordinate, {draggable: true});
-                marker.on('drag', (event) => {
-                    var coordinate = event.latlng
-                    polygon[i] = coordinate
+                var marker = L.marker(coordinate)
+                // var marker = L.marker(coordinate, {draggable: true});
+                // marker.on('drag', (event) => {
+                //     var coordinate = event.latlng
+                //     polygon[i] = coordinate
 
-                    // REMOVE POLYGONO FROM lastRender
+                //     // REMOVE POLYGONO FROM lastRender
+                //     lastRender = lastRender.splice(polygonremovei, 1)
 
-                    map.removeLayer(polygono)
-                    polygono = L.polygon(
-                        polygon
-                    )
-                    polygono.addTo(map);
-                    lastRender.push(polygono)
-                })
+                //     map.removeLayer(polygono)
+                //     polygono = L.polygon(
+                //         polygon
+                //     )
+                //     polygono.addTo(map);
+                //     lastRender.push(polygono)
+                //     polygonremovei = lastRender.length - 1
+                // })
                 marker.addTo(map)
                 lastRender.push(marker)
             }
+
+            return polygono
         }
     }
 
@@ -122,7 +161,7 @@ function success(pos){
 
 
     eventData.forEach((event) => {
-        renderPolygon(event.polygon)
+        window.renderPolygon(event.polygon)
     })
 
 
@@ -132,7 +171,8 @@ function success(pos){
         if (creatingEvent) {
             // var marker = new L.marker(e.latlng).addTo(map);
             eventPolygon.push(e.latlng)
-            renderPolygon(eventPolygon)
+            window.clearPolygon()
+            window.renderPolygon(eventPolygon)
         }
     });
 
