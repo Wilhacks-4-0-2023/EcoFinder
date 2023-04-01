@@ -41,6 +41,6 @@ class EventForm(FlaskForm):
     tags = StringField('Tags (seperated by a comma)',
                        validators=[Length(max = 60)])
     
-    submit = SubmitField('Submit This Event')
+    submit = SubmitField('Submit')
 
     

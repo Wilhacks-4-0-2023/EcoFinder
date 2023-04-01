@@ -85,14 +85,13 @@
                 </div>
                
             </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
         </form>
     </div>
-    <button type="button" class="sendEvent" id="sendEvent" onClick="sendEventonClick()" disabled>
+    <!-- <button type="button" class="sendEvent" id="sendEvent" onClick="sendEventonClick()" disabled>
         Confirm
-    </button>
+        {{ form.submit(class="btn btn-outline-info") }}
+    </button> -->
+    {{ form.submit(class="sendEvent", id="sendEvent", onClick="sendEventonClick()", disabled="true") }}
     <button type="button" class="quitEvent" id="quitEvent" onClick="quitEventonClick()" disabled>
         Quit
     </button>
