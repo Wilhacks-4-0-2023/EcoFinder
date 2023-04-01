@@ -4,12 +4,14 @@ from datetime import datetime
 from forms import RegistrationForm, LoginForm, EventForm
 from flask_login import login_user, current_user, logout_user, login_required
 
+
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = 'ab9c32a070313d1343395f1cc4d5a669'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
 
 db = SQLAlchemy(app)
 
@@ -39,14 +41,16 @@ def home():
 def about():
     return render_template('about.html', title = 'About Page')
 
-@app.route("/events")
+@app.route("/events", methods = ['GET', 'POST'])
 def events():
     form = EventForm()
-    if form.validate_on_submit:
-        event = Event(form.title.data, date_posted = datetime.utcnow(), content = form.content.data, location = form.location.data)
+    if form.validate_on_submit():
+        event = Event(form.title.data, date_posted = datetime.utcnow(), content = form.content.data, location = form.location.data, author = current_user)
         db.session.add(event)
         db.session.commit()
         flash(f'Event created, thanks for contributing!')
+        flash(f'{Event.query.all()}')
+        
     return render_template('events.html', title = 'Events', form = form)
 
 @app.route("/map")
