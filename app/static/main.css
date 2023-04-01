@@ -134,47 +134,11 @@ line-height: 1.5;
 text-shadow: 6px -2px 9px #ECCDCD; */
 }
 
-#eventViewClose {
+
+
+
+#close {
     position: absolute;
-    z-index: 4000;
-    left: 20px;
-    bottom: 20px;
-    background-color: rgb(70, 173, 227);
-    border-radius: 10px;
-    padding: 5px 10px;
-    width: 300;   
-}
-
-
-
-#close {
-    float:right;
-    display:inline-block;
-    padding:2px 5px;
-    background:#ccc;
-}
-
-A simple close button:
-
-<span id="close" onclick="this.parentNode.parentNode.remove(); return false;">x</span>
-Add this inside your div:
-
-Show code snippet
-
-You may also use something like this
-
-window.onload = function(){
-    document.getElementById('close').onclick = function(){
-        this.parentNode.parentNode.remove();
-        return false;
-    };
-};
-Show code snippet
-
-Styling
-Css for close button
-
-#close {
     float: right;
     display: inline-block;
     padding: 2px 5px;

@@ -7,16 +7,13 @@ var creatingEvent = false;
 var viewingInfo = false;
 var eventPolygon = [];
 
-function viewingInfoOff() {
-    viewingInfo = false
-}
-
 function update() {
     document.getElementById("sendEvent").disabled = !creatingEvent
     document.getElementById("quitEvent").disabled = !creatingEvent
     document.getElementById("eventForm").hidden = !creatingEvent
 
     document.getElementById("eventView").hidden = !viewingInfo
+    // document.getElementById("eventViewClose").display = !viewingInfo
 
     var v = '';
     if (eventPolygon.length == 0) {
@@ -33,6 +30,12 @@ function update() {
     document.getElementById("location").value = v
     // window.clearPolygon()
 }
+
+function viewingInfoOff() {
+    viewingInfo = false
+    update()
+}
+
 
 function creatingEventonClick() {
     creatingEvent = !creatingEvent
