@@ -86,19 +86,6 @@ def logout():
 def account():
     return render_template('account.html', title='Account Details')
 
-@app.route('/event/<int:event_id>/interested', methods=['POST'])
-@login_required
-def interested(event_id):
-    event = Event.query.get(event_id)
-    if event:
-        if current_user not in event.interested_users:
-            event.interested_users.append(current_user)
-            db.session.commit()
-            flash('You are now interested in this event.', 'success')
-        else:
-            flash(f'You have already signed up for this event!', 'danger')
-
-    return redirect(url_for('event_detail', event_id=event_id))
 
 # gets rows
 def getEventRows():
