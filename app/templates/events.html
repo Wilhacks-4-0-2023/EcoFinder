@@ -8,9 +8,34 @@
           <h3 class="card-title" style="color: #006400">{{ value.title }}</h3>
           <p class="card-text" style="color: #228B22">{{ value.date_posted }}</p>
           <p class="card-text" style="color: #3CB371">{{ value.content }}</p>
-          <p class="card-text" style="color: #2E8B57">By {{ value.user_id }}</p>
+          <p clßass="card-text" style="color: #2E8B57">By {{ value.user_id }}</p>
+          <div class="interested">
+            <button type="button" class="btn btn-success" onclick="addInterestedUser({{ value.id }})">
+              Interested
+              <span class="badge badge-light">{{ value.interested_count }}</span>
+            </button>
+          </div>
         </div>
       </div>
     {% endfor %}
   </div>
 {% endblock content %}
+
+{% block scripts %}
+  <script>
+    function addInterestedUser(event_id) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/interested', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var interestedCount = JSON.parse(xhr.responseText)['interested_count'];
+          var badge = document.querySelector(`[onclick="addInterestedUser(${event_id})"] .badge`);
+          badge.innerHTML = interestedCount;
+        }
+      };
+      var data = `event_id=${event_id}&user_id=${current_user}`;
+      xhr.send(data);
+    }
+  </script>
+{% endblock scripts %}
