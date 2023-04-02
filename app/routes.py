@@ -21,8 +21,6 @@ def about():
 def events():
     values = getEventRows().data
     values = json.loads(values)
-    print(values[0]["content"])
-
         
     return render_template('events.html', title = 'Events List', values = values)
 
