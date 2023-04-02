@@ -1,16 +1,19 @@
-from flask import render_template, flash, url_for, redirect, request, jsonify
+from flask import render_template, flash, url_for, redirect, request, jsonify, send_from_directory
 from app import app, db, bcrypt
 import json
 from datetime import datetime
 from app.forms import RegistrationForm, LoginForm, EventForm
 from flask_login import login_user, current_user, logout_user, login_required
 from app.models import User, Event
+import os
+
+
 
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template('home.html', title = 'Home')
-
+    app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon.ico'))
 
 @app.route("/about")
 def about():
