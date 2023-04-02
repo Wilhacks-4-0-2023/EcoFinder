@@ -100,6 +100,7 @@ def interested(event_id):
 
     return redirect(url_for('event_detail', event_id=event_id))
 
+# gets rows
 def getEventRows():
     rows = Event.query.all()
     column_keys = Event.__table__.columns.keys()
